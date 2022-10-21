@@ -6,6 +6,5 @@ def get_list_length(arr: list) -> int:
 def get_list_length_recr(arr: list, length_counter: int):
     if not arr:
         return length_counter
-    length_counter += 1
     arr.pop(0)
-    return get_list_length_recr(arr, length_counter)
+    return get_list_length_recr(arr, length_counter + 1)
