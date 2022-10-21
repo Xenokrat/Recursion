@@ -9,7 +9,7 @@ class MyTestCase(unittest.TestCase):
         not_palindrome = 'sometesttext'
         self.assertTrue(is_palindrome_recr(palindrome))
 
-        palindrome = 'Заказ'
+        palindrome = 'Lallal'
         self.assertTrue(is_palindrome_recr(palindrome))
 
         self.assertFalse(is_palindrome_recr(not_palindrome))
