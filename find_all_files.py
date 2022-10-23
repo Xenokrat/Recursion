@@ -1,15 +1,26 @@
 from os import listdir
-from os.path import isfile, join
+from os.path import isdir, join as os_join
 from typing import List
 
-# 1. получаем папку / файл
-# 2. проверяем, что это, файл или папке
-# 3. если это папка - получаем ее содержимое
-def find_all_files(path: str):
-    if isfile(path):
-        return path
-    items_list = list(map(lambda x: path + '/' + x, listdir(path)))
-    return list(map(find_all_files, items_list))
 
-if __name__ == '__main__':
-    print(find_all_files('/home/pavel/test_delete'))
+def find_all_files(path: str) -> List[str]:
+    dirs, files = [], []
+    find_all_files_recr(path, dirs, files)
+    return files
+
+
+def find_all_files_recr(path: str, dirs: List[str], files: List[str]) -> None:
+    dirs_and_files = listdir(path)
+    dirs_here = []
+
+    for item in dirs_and_files:
+        if isdir(os_join(path, item)):
+            dirs.append(item)
+            dirs_here.append(item)
+        else:
+            files.append(item)
+
+    for item in dirs_here:
+        new_path: str = os_join(path, item)
+        find_all_files_recr(new_path, dirs, files)
+        
