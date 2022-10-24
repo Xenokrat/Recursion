@@ -1,5 +1,5 @@
 from os import listdir
-from os.path import isdir, join as os_join
+from os.path import isdir, join
 from typing import List
 
 
@@ -14,13 +14,13 @@ def find_all_files_recr(path: str, dirs: List[str], files: List[str]) -> None:
     dirs_here = []
 
     for item in dirs_and_files:
-        if isdir(os_join(path, item)):
+        if isdir(join(path, item)):
             dirs.append(item)
             dirs_here.append(item)
         else:
             files.append(item)
 
     for item in dirs_here:
-        new_path: str = os_join(path, item)
+        new_path: str = join(path, item)
         find_all_files_recr(new_path, dirs, files)
         
