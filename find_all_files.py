@@ -4,23 +4,22 @@ from typing import List
 
 
 def find_all_files(path: str) -> List[str]:
-    dirs, files = [], []
-    find_all_files_recr(path, dirs, files)
+    files = []
+    find_all_files_recr(path, files)
     return files
 
 
-def find_all_files_recr(path: str, dirs: List[str], files: List[str]) -> None:
+def find_all_files_recr(path: str, files: List[str]) -> None:
     dirs_and_files = listdir(path)
     dirs_here = []
 
     for item in dirs_and_files:
         if isdir(join(path, item)):
-            dirs.append(item)
             dirs_here.append(item)
         else:
             files.append(item)
 
     for item in dirs_here:
         new_path: str = join(path, item)
-        find_all_files_recr(new_path, dirs, files)
+        find_all_files_recr(new_path, files)
         
