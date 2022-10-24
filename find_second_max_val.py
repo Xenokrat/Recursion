@@ -6,14 +6,13 @@ def find_second_max_val(arr: List):
     if len(arr) < 2:
         return None
 
-    first_max = arr[0]
-    second_max = float('-inf')
+    first_max = max(arr[0], arr[1])
+    second_max = min(arr[0], arr[1])
 
-    return find_second_max_recr(arr, 1, first_max, second_max)
+    return find_second_max_recr(arr, 2, first_max, second_max)
 
 
 def find_second_max_recr(arr: List, index: int, first_max, second_max):
-
     if index >= len(arr):
         return second_max
 
